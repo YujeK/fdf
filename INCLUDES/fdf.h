@@ -6,7 +6,7 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 12:27:56 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/09/18 19:59:50 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/10/04 18:08:18 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define Xenvdim 800
 
 /*
-** Colors HEXDECIMAL :
+** Colors  HEXADECIMAL :
 */
 # define PINK       0xFD2BE6
 # define BLUE       0x0012FD
@@ -36,6 +36,12 @@
 # define BLACK      0x000000
 # define PURPLE     0x7400AC
 # define GREY       0x9A9A9A
+
+typedef struct      s_wing
+{
+    int colors;
+    int z;
+}                   t_wing;
 
 typedef struct      s_env
 {
