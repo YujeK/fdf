@@ -6,7 +6,7 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 12:27:56 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/10/04 18:08:18 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/10/05 16:11:51 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ typedef struct      s_env
     void    *win;
     int     x;
     int     y;
+    int     col;
+    int     lin;
 }                   t_env;
 
 typedef struct      s_line

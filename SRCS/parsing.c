@@ -6,66 +6,80 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/01 10:33:35 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/10/04 18:43:17 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/10/05 18:23:22 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int     first_open(char *str)
+t_wing	*bucketcreation(char *str, t_env *env)
 {
 	char    *line;
 	int     fd;
 	int		i;
 	int		fsize;
-	t_wing *bucket;
+	t_wing	*bucket;
 
 	i = -1;
-	ft_readverif(char *str);
+	fd = ft_readverif(str);
 	while (get_next_line(fd, &line) == 1)
 	{
 		if (i = -1)
 			fsize = ft_countwords(*line);
 		else if (ft_countwords(*line) != fsize)
 			ft_error(__func__, __LINE__);
-	i++;
+		free(line);
+		i++;
 	}
-	if (!(bucket = ft_memalloc(sizeof(t_wing) * fsize * i)))
-		return (0);
-    close(fd);
-    free(line);
-	return (*bucket);
+	env->col = fsize;
+	env->lin = i;
+	if (!(bucket = ft_memalloc(sizeof(t_wing) * fsize * (i + 1))))
+		ft_error(__func__, __LINE__);
+    close (fd);
+	return (bucket, env);
 }
 
-/*
-int     read(char *str)
+void     wingscheck(char *str, t_env *env, t_wing *bucket)
 {
 	char    *line;
 	int     fd;
-	int     c;
+	int		wing;
 
-	ft_readverif(char *str);
+	fd = ft_readverif(str);
+	wing = 0;
 	while (get_next_line(fd, &line) == 1)
 	{
-		if c = -1;
-        {
-			{
-				if parsing(*line) == 1;
-				stock_line(*line)
-			}
-		}
+		collectingwings(line, bucket, wing, env->col);
+		free (line);
+		wing++;
 	}
+	close (fd);
+}
 
-	int     parsing (char *str)
+void	collectingwings(char *line, t_wing *bucket, int wing, int wing_multiplicator)
+{
+	wing = wing * wing_multiplicator;
+	while (*line)
 	{
-		int i;
-
-		i = 0;
-		while (str[i] && str[i] != '\n')
-		{
-			if (ft_atoi(str) == TRUE)
-				return (TRUE);
-		}
+		while (*line && *line == ' ')
+			*line++;
+		bucket[wing].z = ft_atoi(*line);
+		bucket[wing].colors = PINK;
+		while (*line && *line != ' ')
+			*line++;
+		wing++;
 	}
 }
-*/
+
+t_wing	*parsemanager(char *str)
+{
+
+	t_env	*env;
+	t_wing	*bucket;
+
+	if (!(env = ft_memalloc(sizeof(env))))
+		ft_error(__func__, __LINE__);
+	bucketcreation (str, env);
+	wingscheck (str, env, bucket);
+	ft_printbucket(env);
+}
