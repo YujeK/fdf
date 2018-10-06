@@ -6,7 +6,7 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 14:03:54 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/09/18 20:05:59 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/10/06 19:19:28 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_brosenham(t_env *env, t_line *line, int color, int swap)
 	}
 }
 
-void	line_drawer(t_env *env, t_point1 *point1, t_point2 *point2, int color)
+void	line_drawer(t_env *env, t_point point1, t_point point2, int color)
 {
 	t_line	*line;
 	int		swap;
@@ -58,10 +58,10 @@ void	line_drawer(t_env *env, t_point1 *point1, t_point2 *point2, int color)
 
 	swap = 0;
 	line = ft_memalloc(sizeof(t_line));
-	line->dx = abs(point2->x2 - point1->x1);
-	line->dy = abs(point2->y2 - point1->y1);
-	line->s1 = signdetector(point2->x2 - point1->x1);
-	line->s2 = signdetector(point2->y2 - point1->y1);
+	line->dx = abs(point2.x - point1.x);
+	line->dy = abs(point2.y - point1.y);
+	line->s1 = signdetector(point2.x - point1.x);
+	line->s2 = signdetector(point2.y - point1.y);
 	if (line->dy > line->dx)
 	{
 		temp = line->dx;
@@ -70,7 +70,8 @@ void	line_drawer(t_env *env, t_point1 *point1, t_point2 *point2, int color)
 		swap = 1;
 	}
 	line->d = 2 * line->dy - line->dx;
-	line->x = point1->x1;
-	line->y = point1->y1;
+	line->x = point1.x;
+	line->y = point1.y;
 	ft_brosenham(env, line, color, swap);
+	free(line);
 }

@@ -6,7 +6,7 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 12:27:56 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/10/05 16:11:51 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/10/06 19:21:27 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <stdlib.h>
 #include "libft/libft.h"
 #include "mlx.h"
+#include <fcntl.h>
 
 # define Yenvdim 800
 # define Xenvdim 800
@@ -51,6 +52,7 @@ typedef struct      s_env
     int     y;
     int     col;
     int     lin;
+    t_wing  *bucket;
 }                   t_env;
 
 typedef struct      s_line
@@ -64,22 +66,22 @@ typedef struct      s_line
     int     s2;
 }                   t_line;
 
-typedef struct      s_point1
+typedef struct      s_point
 {
-    int     x1;
-    int     y1;
-}                   t_point1;
+    int     x;
+    int     y;
+}                   t_point;
 
-typedef struct      s_point2
-{
-    int     x2;
-    int     y2;
-}                   t_point2;
 
 int     signdetector(int x);
-int		main(void);
-void	line_drawer(t_env *env, t_point1 *point1, t_point2 *point2, int color);
+int		main(int ac, char *av[]);
+void	line_drawer(t_env *env, t_point point1, t_point point2, int color);
 int     key_manager(int key, void *param);
 int     mouse_manager(int button, void *param);
+void    parsemanager(t_env *env, char *str);
+int     ft_readverif(char *str);
+void    ft_error(const char function[], int line);
+int     ft_countwords(char *str);
+void    ft_printbucket(t_env *env);
 
 #endif

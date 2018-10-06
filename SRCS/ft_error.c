@@ -6,7 +6,7 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 13:05:14 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/10/04 13:12:49 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/10/06 16:58:23 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <sys/errno.h>
+#include "../INCLUDES/fdf.h"
 
 void	ft_error(const char function[], int line)
 {

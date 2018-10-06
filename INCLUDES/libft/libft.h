@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asamir-k <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/12 18:09:46 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/09/06 19:23:30 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/10/06 17:15:08 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <fcntl.h>
+# define BUFF_SIZE 42
+# define FALSE 0
+# define TRUE 1
+# include <sys/uio.h>
+# include <sys/types.h>
 
 typedef struct			s_list
 {
@@ -25,6 +31,7 @@ typedef struct			s_list
 	struct s_list		*next;
 }						t_list;
 
+int						get_next_line(const int fd, char **line);
 char					*ft_strjoinfree(char *s1, char *s2);
 char					*ft_strsubfree(char *s, unsigned int start, size_t len);
 void					ft_print_words_tables(char **tab);

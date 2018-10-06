@@ -6,40 +6,55 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/01 10:33:35 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/10/05 18:23:22 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/10/06 19:24:00 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../INCLUDES/fdf.h"
 
-t_wing	*bucketcreation(char *str, t_env *env)
+void	bucketcreation(char *str, t_env *env)
 {
 	char    *line;
 	int     fd;
 	int		i;
 	int		fsize;
-	t_wing	*bucket;
 
 	i = -1;
 	fd = ft_readverif(str);
 	while (get_next_line(fd, &line) == 1)
 	{
-		if (i = -1)
-			fsize = ft_countwords(*line);
-		else if (ft_countwords(*line) != fsize)
+		if (i == -1)
+			fsize = ft_countwords(line);
+		else if (ft_countwords(line) != fsize)
 			ft_error(__func__, __LINE__);
 		free(line);
 		i++;
 	}
 	env->col = fsize;
-	env->lin = i;
-	if (!(bucket = ft_memalloc(sizeof(t_wing) * fsize * (i + 1))))
+	env->lin = i + 1;
+	if (!(env->bucket = ft_memalloc(sizeof(t_wing) * fsize * (i + 1))))
 		ft_error(__func__, __LINE__);
-    close (fd);
-	return (bucket, env);
+    close(fd);
+
 }
 
-void     wingscheck(char *str, t_env *env, t_wing *bucket)
+
+void	collectingwings(t_env *env, char *line, int wing)
+{
+	wing = wing * env->col;
+	while (*line)
+	{
+		while (*line && *line == ' ')
+			line++;
+		env->bucket[wing].z = ft_atoi(line);
+		env->bucket[wing].colors = PINK;
+		while (*line && *line != ' ')
+			line++;
+		wing++;
+	}
+}
+
+void     wingscheck(char *str, t_env *env)
 {
 	char    *line;
 	int     fd;
@@ -49,37 +64,16 @@ void     wingscheck(char *str, t_env *env, t_wing *bucket)
 	wing = 0;
 	while (get_next_line(fd, &line) == 1)
 	{
-		collectingwings(line, bucket, wing, env->col);
-		free (line);
+		collectingwings(env, line, wing);
+		free(line);
 		wing++;
 	}
-	close (fd);
+	close(fd);
 }
 
-void	collectingwings(char *line, t_wing *bucket, int wing, int wing_multiplicator)
+void	parsemanager(t_env *env, char *str)
 {
-	wing = wing * wing_multiplicator;
-	while (*line)
-	{
-		while (*line && *line == ' ')
-			*line++;
-		bucket[wing].z = ft_atoi(*line);
-		bucket[wing].colors = PINK;
-		while (*line && *line != ' ')
-			*line++;
-		wing++;
-	}
-}
-
-t_wing	*parsemanager(char *str)
-{
-
-	t_env	*env;
-	t_wing	*bucket;
-
-	if (!(env = ft_memalloc(sizeof(env))))
-		ft_error(__func__, __LINE__);
 	bucketcreation (str, env);
-	wingscheck (str, env, bucket);
+	wingscheck (str, env);
 	ft_printbucket(env);
 }

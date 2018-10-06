@@ -6,7 +6,7 @@
 #    By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/15 17:15:14 by asamir-k          #+#    #+#              #
-#    Updated: 2018/09/18 18:35:39 by asamir-k         ###   ########.fr        #
+#    Updated: 2018/10/06 17:03:58 by asamir-k         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,11 @@ SRC=SRCS/main.c 			\
 	SRCS/linedrawer.c		\
 	SRCS/keyboardinputs.c 	\
 	SRCS/mouseinputs.c		\
+	SRCS/parsing.c 			\
+	SRCS/ft_printbucket.c   \
+	SRCS/ft_error.c 		\
+	SRCS/ft_readverif.c		\
+	SRCS/ft_countwords.c	\
 
 OBJ = $(SRC:.c=.o)
 

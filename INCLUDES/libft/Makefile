@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asamir-k <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/07 15:05:07 by asamir-k          #+#    #+#              #
-#    Updated: 2018/09/06 19:16:03 by asamir-k         ###   ########.fr        #
+#    Updated: 2018/10/06 17:30:46 by asamir-k         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,31 +16,32 @@ HEADER= libft.h
 FLAGS= -Wall -Werror -Wextra
 AR:= ar rc
 RL= ranlib
-SRC= ft_putchar.c \
-	 ft_atoi.c \
-	 ft_isascii.c \
-	 ft_strchr.c \
+SRC= get_next_line.c \
+	ft_putchar.c \
+	ft_atoi.c \
+	ft_isascii.c \
+	ft_strchr.c \
 	ft_strjoinfree.c \
 	ft_strdup.c \
 	ft_strsubfree.c \
 	ft_strncat.c \
-	 ft_strnstr.c \
-	 ft_tolower.c \
-	 ft_isalnum.c \
-	 ft_isdigit.c \
-	 ft_putstr.c \
-	 ft_strcmp.c \
-	 ft_strlcat.c \
-	 ft_strncmp.c \
-	 ft_strrchr.c \
-	 ft_toupper.c \
-	 ft_isalpha.c \
-	 ft_isprint.c \
-	 ft_strcat.c \
-	 ft_strcpy.c \
-	 ft_strlen.c \
-	 ft_strncpy.c \
-	 ft_strstr.c \
+	ft_strnstr.c \
+	ft_tolower.c \
+	ft_isalnum.c \
+	ft_isdigit.c \
+	ft_putstr.c \
+	ft_strcmp.c \
+	ft_strlcat.c \
+	ft_strncmp.c \
+	ft_strrchr.c \
+	ft_toupper.c \
+	ft_isalpha.c \
+	ft_isprint.c \
+	ft_strcat.c \
+	ft_strcpy.c \
+	ft_strlen.c \
+	ft_strncpy.c \
+	ft_strstr.c \
 	ft_memcpy.c \
 	ft_memcmp.c \
 	ft_putnbr.c \
@@ -102,4 +103,3 @@ fclean: clean
 
 re: fclean
 	make
-

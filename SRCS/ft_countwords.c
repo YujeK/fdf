@@ -6,11 +6,11 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 16:45:02 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/10/04 18:04:05 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/10/06 18:52:59 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../INCLUDES/fdf.h"
 
 int     ft_countwords(char *str)
 {
@@ -20,7 +20,7 @@ int     ft_countwords(char *str)
 
     i = 0;
     countwords = 0;
-    while (str[i] != '\n')
+    while (str[i])
     {
         word = 0;
         while (str[i] == ' ' && str[i])
