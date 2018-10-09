@@ -6,7 +6,7 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/01 10:33:35 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/10/06 19:24:00 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/10/09 15:21:11 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	bucketcreation(char *str, t_env *env)
 
 }
 
-
 void	collectingwings(t_env *env, char *line, int wing)
 {
 	wing = wing * env->col;
@@ -47,7 +46,7 @@ void	collectingwings(t_env *env, char *line, int wing)
 		while (*line && *line == ' ')
 			line++;
 		env->bucket[wing].z = ft_atoi(line);
-		env->bucket[wing].colors = PINK;
+		env->bucket[wing].colors = BROWN;
 		while (*line && *line != ' ')
 			line++;
 		wing++;
@@ -76,4 +75,5 @@ void	parsemanager(t_env *env, char *str)
 	bucketcreation (str, env);
 	wingscheck (str, env);
 	ft_printbucket(env);
+	ft_drawbucket(env);
 }

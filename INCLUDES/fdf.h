@@ -6,7 +6,7 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 12:27:56 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/10/06 19:21:27 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/10/09 17:02:06 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 # define Yenvdim 800
 # define Xenvdim 800
+# define BORDER 5
 
 /*
 ** Colors  HEXADECIMAL :
@@ -83,5 +84,6 @@ int     ft_readverif(char *str);
 void    ft_error(const char function[], int line);
 int     ft_countwords(char *str);
 void    ft_printbucket(t_env *env);
+void    ft_drawbucket(t_env *env);
 
 #endif
