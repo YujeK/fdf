@@ -6,7 +6,7 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 12:27:56 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/10/09 17:02:06 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/10/22 18:59:38 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@
 
 # define Yenvdim 800
 # define Xenvdim 800
-# define BORDER 5
+# define BORDER 140
+
+
 
 /*
 ** Colors  HEXADECIMAL :
@@ -47,6 +49,7 @@ typedef struct      s_wing
 
 typedef struct      s_env
 {
+    int     z_max;
     void    *mlx;
     void    *win;
     int     x;
@@ -54,6 +57,10 @@ typedef struct      s_env
     int     col;
     int     lin;
     t_wing  *bucket;
+    int     corner1;
+    int     corner2;
+    int     corner3;
+    int     corner4;
 }                   t_env;
 
 typedef struct      s_line
@@ -73,9 +80,9 @@ typedef struct      s_point
     int     y;
 }                   t_point;
 
-
+int     get_color(t_env *env, int z);
 int     signdetector(int x);
-int		main(int ac, char *av[]);
+int		main(int ac, char **av);
 void	line_drawer(t_env *env, t_point point1, t_point point2, int color);
 int     key_manager(int key, void *param);
 int     mouse_manager(int button, void *param);

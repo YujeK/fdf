@@ -6,7 +6,7 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 18:11:22 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/10/09 17:33:46 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/10/22 18:55:39 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ void    ft_printbucket(t_env *env)
     }
 }
 
-
-#include "../INCLUDES/fdf.h"
+int     ft_abs(int n)
+{
+    return (n < 0 ? -n : n);
+}
 
 void    ft_drawbucket(t_env *env)
 {
@@ -41,6 +43,24 @@ void    ft_drawbucket(t_env *env)
     t_point point2;
     t_point point3;
     int wing;
+    int size;
+    int height;
+    int width;
+
+    if (env->col <= env->lin)
+        size = (Xenvdim - 2 * BORDER)  / (env->col - 1);
+    else
+        size = (Yenvdim - 2 * BORDER)  / (env->lin - 1);
+
+    env->corner1/*y*/ = 0;
+    env->corner4/*y*/ = (env->col + env->lin) * (size) / 4/* + BORDER*//*- (env->bucket[wing].z)*/;
+    height = ft_abs(env->corner1 - env->corner4);
+
+    env->corner2/*x*/ = (env->col) * (size) / 2/* + BORDER*//*- (env->bucket[wing].z)*/;
+    env->corner3/*x*/ = (0 - env->lin) * (size) / 2/* + BORDER*//*- (env->bucket[wing].z)*/;
+    width = ft_abs(env->corner3 - env->corner2);
+
+    printf("hauteur : %d\nlargeur : %d\n", height, width);
 
     y = -1;
     while (++y < env->lin)
@@ -49,21 +69,28 @@ void    ft_drawbucket(t_env *env)
         while (++x < env->col)
         {
             wing = y * env->col + x;
-            if (x != env->col - 1 && y != env->lin - 1)
-                printf("P1 %d P2 %d P3 %d\n", env->bucket[wing].z, env->bucket[wing + 1].z, env->bucket[wing + env->col].z);
-            point1.x = x * (Xenvdim - 2 * BORDER)  / (env->col - 1) + BORDER - (env->bucket[wing].z);
-            point1.y = y * (Yenvdim - 2 * BORDER)  / (env->lin - 1) + BORDER - (env->bucket[wing].z);
+            point1.x = (x - y) * (size) / 2/* + BORDER*//*- (env->bucket[wing].z)*/;
+            point1.y = ((x + y) * (size) / 4)/* + BORDER*//*- (env->bucket[wing].z)*/;
+            point1.y -= (env->bucket[wing].z);
+            point1.x += Xenvdim / 2 - (width / 6);
+            point1.y += Yenvdim / 2 - (height / 2);
             if (x != env->col - 1)
             {
-                point2.x = (x + 1) * (Xenvdim - 2 * BORDER) / (env->col - 1) + BORDER - (env->bucket[wing + 1].z);
-                point2.y = y * (Yenvdim - 2 * BORDER)  / (env->lin - 1) + BORDER - (env->bucket[wing + 1].z);
-                line_drawer(env, point1, point2, PINK);
+                point2.x =((x + 1) - y) * (size) / 2/* + BORDER*//* - (env->bucket[wing + 1].z)*/;
+                point2.y =((x + 1) + y) * (size) / 4/* + BORDER*//* - (env->bucket[wing + 1].z)*/;
+                point2.y -= (env->bucket[wing + 1].z);
+                point2.x += Xenvdim / 2 - (width / 6);
+                point2.y += Yenvdim / 2 - (height / 2);
+                line_drawer(env, point1, point2, get_color(env, env->bucket[wing + env->col].z));
             }
             if (y != env->lin - 1)
             {
-                point3.x = x * (Xenvdim - 2 * BORDER)  / (env->col - 1) + BORDER - (env->bucket[wing + env->col].z);
-                point3.y = (y + 1) * (Yenvdim - 2 * BORDER)  / (env->lin - 1) + BORDER - (env->bucket[wing + env->col].z);
-                line_drawer(env, point1, point3, BLUE);
+                point3.x =(x - (y + 1)) * size / 2/* + BORDER*//* - (env->bucket[wing + env->col].z)*/;
+                point3.y = (x + (y + 1)) * size / 4/* + BORDER*//* - (env->bucket[wing + env->col].z)*/;
+                point3.y -= (env->bucket[wing + env->col].z);
+                point3.x += Xenvdim / 2 - (width / 6);
+                point3.y += Yenvdim / 2 - (height / 2);
+                line_drawer(env, point1, point3, get_color(env, env->bucket[wing + env->col].z));
             }
         }
         printf("\n");

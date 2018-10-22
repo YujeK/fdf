@@ -6,7 +6,7 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 14:03:54 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/10/06 19:19:28 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/10/22 19:01:44 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,17 @@ void	ft_brosenham(t_env *env, t_line *line, int color, int swap)
 		mlx_pixel_put(env->mlx, env->win, line->x, line->y, color);
 		while (line->d >= 0)
 		{
+			line->d = line->d - 2 * line->dx;
 			if (swap)
 				line->x = line->x + line->s1;
 			else
-			{
 				line->y = line->y + line->s2;
-				line->d = line->d - 2 * line->dx;
-			}
 		}
 		if (swap)
 			line->y = line->y + line->s2;
 		else
-		{
 			line->x = line->x + line->s1;
-			line->d = line->d + 2 * line->dy;
-		}
+		line->d = line->d + 2 * line->dy;
 		i++;
 	}
 }

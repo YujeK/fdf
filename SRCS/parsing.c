@@ -6,7 +6,7 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/01 10:33:35 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/10/09 15:21:11 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/10/22 18:46:27 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	bucketcreation(char *str, t_env *env)
 	int     fd;
 	int		i;
 	int		fsize;
-
 	i = -1;
 	fd = ft_readverif(str);
 	while (get_next_line(fd, &line) == 1)
@@ -35,7 +34,6 @@ void	bucketcreation(char *str, t_env *env)
 	if (!(env->bucket = ft_memalloc(sizeof(t_wing) * fsize * (i + 1))))
 		ft_error(__func__, __LINE__);
     close(fd);
-
 }
 
 void	collectingwings(t_env *env, char *line, int wing)
@@ -46,7 +44,8 @@ void	collectingwings(t_env *env, char *line, int wing)
 		while (*line && *line == ' ')
 			line++;
 		env->bucket[wing].z = ft_atoi(line);
-		env->bucket[wing].colors = BROWN;
+		if (env->z_max < env->bucket[wing].z)
+			env->z_max = env->bucket[wing].z;
 		while (*line && *line != ' ')
 			line++;
 		wing++;
