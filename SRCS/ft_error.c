@@ -6,7 +6,7 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 13:05:14 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/10/06 16:58:23 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/10/23 11:11:41 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_error(const char function[], int line)
 	ft_putstr("Error during ");
 	ft_putstr(function);
 	ft_putstr(" (at line : ");
-    ft_putnbr(line);
+	ft_putnbr(line);
 	ft_putstr(") => ");
 	ft_putendl_fd(strerror(errno), 2);
 	exit(errno);

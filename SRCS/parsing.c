@@ -6,7 +6,7 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/01 10:33:35 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/10/22 18:46:27 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/10/23 11:16:28 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 void	bucketcreation(char *str, t_env *env)
 {
-	char    *line;
-	int     fd;
+	char	*line;
+	int		fd;
 	int		i;
 	int		fsize;
+
 	i = -1;
 	fd = ft_readverif(str);
 	while (get_next_line(fd, &line) == 1)
@@ -33,7 +34,7 @@ void	bucketcreation(char *str, t_env *env)
 	env->lin = i + 1;
 	if (!(env->bucket = ft_memalloc(sizeof(t_wing) * fsize * (i + 1))))
 		ft_error(__func__, __LINE__);
-    close(fd);
+	close(fd);
 }
 
 void	collectingwings(t_env *env, char *line, int wing)
@@ -52,10 +53,10 @@ void	collectingwings(t_env *env, char *line, int wing)
 	}
 }
 
-void     wingscheck(char *str, t_env *env)
+void	wingscheck(char *str, t_env *env)
 {
-	char    *line;
-	int     fd;
+	char	*line;
+	int		fd;
 	int		wing;
 
 	fd = ft_readverif(str);
@@ -71,8 +72,8 @@ void     wingscheck(char *str, t_env *env)
 
 void	parsemanager(t_env *env, char *str)
 {
-	bucketcreation (str, env);
-	wingscheck (str, env);
+	bucketcreation(str, env);
+	wingscheck(str, env);
 	ft_printbucket(env);
 	ft_drawbucket(env);
 }

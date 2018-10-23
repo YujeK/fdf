@@ -6,7 +6,7 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 18:11:22 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/10/22 18:55:39 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/10/23 17:43:48 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,22 +46,16 @@ void    ft_drawbucket(t_env *env)
     int size;
     int height;
     int width;
-
     if (env->col <= env->lin)
-        size = (Xenvdim - 2 * BORDER)  / (env->col - 1);
+        size = (((XENVDIM - 2 * BORDER) / (env->col - 1)) - env->zoom_modify);
     else
-        size = (Yenvdim - 2 * BORDER)  / (env->lin - 1);
-
-    env->corner1/*y*/ = 0;
-    env->corner4/*y*/ = (env->col + env->lin) * (size) / 4/* + BORDER*//*- (env->bucket[wing].z)*/;
+        size = (((YENVDIM - 2 * BORDER) / (env->lin - 1)) - env->zoom_modify);
+    env->corner1 = 0;
+    env->corner4 = (env->col + env->lin) * (size) / 4;
     height = ft_abs(env->corner1 - env->corner4);
-
-    env->corner2/*x*/ = (env->col) * (size) / 2/* + BORDER*//*- (env->bucket[wing].z)*/;
-    env->corner3/*x*/ = (0 - env->lin) * (size) / 2/* + BORDER*//*- (env->bucket[wing].z)*/;
+    env->corner2 = (env->col) * (size) / 2;
+    env->corner3 = (0 - env->lin) * (size) / 2;
     width = ft_abs(env->corner3 - env->corner2);
-
-    printf("hauteur : %d\nlargeur : %d\n", height, width);
-
     y = -1;
     while (++y < env->lin)
     {
@@ -69,27 +63,33 @@ void    ft_drawbucket(t_env *env)
         while (++x < env->col)
         {
             wing = y * env->col + x;
-            point1.x = (x - y) * (size) / 2/* + BORDER*//*- (env->bucket[wing].z)*/;
-            point1.y = ((x + y) * (size) / 4)/* + BORDER*//*- (env->bucket[wing].z)*/;
-            point1.y -= (env->bucket[wing].z);
-            point1.x += Xenvdim / 2 - (width / 6);
-            point1.y += Yenvdim / 2 - (height / 2);
+            point1.x = (x - y) * (size) / 2;
+            point1.y = ((x + y) * (size) / 4);
+            point1.y -= (env->bucket[wing].z * env->z_modify);
+            point1.x += XENVDIM / 2 - (width / 6);
+            point1.x += env->trans_x;
+            point1.y += YENVDIM / 2 - (height / 2);
+            point1.y += env->trans_y;
             if (x != env->col - 1)
             {
-                point2.x =((x + 1) - y) * (size) / 2/* + BORDER*//* - (env->bucket[wing + 1].z)*/;
-                point2.y =((x + 1) + y) * (size) / 4/* + BORDER*//* - (env->bucket[wing + 1].z)*/;
-                point2.y -= (env->bucket[wing + 1].z);
-                point2.x += Xenvdim / 2 - (width / 6);
-                point2.y += Yenvdim / 2 - (height / 2);
+                point2.x =((x + 1) - y) * (size) / 2;
+                point2.y =((x + 1) + y) * (size) / 4;
+                point2.y -= (env->bucket[wing + 1].z * env->z_modify);
+                point2.x += XENVDIM / 2 - (width / 6);
+                point2.x += env->trans_x;
+                point2.y += YENVDIM / 2 - (height / 2);
+                point2.y += env->trans_y;
                 line_drawer(env, point1, point2, get_color(env, env->bucket[wing + env->col].z));
             }
             if (y != env->lin - 1)
             {
-                point3.x =(x - (y + 1)) * size / 2/* + BORDER*//* - (env->bucket[wing + env->col].z)*/;
-                point3.y = (x + (y + 1)) * size / 4/* + BORDER*//* - (env->bucket[wing + env->col].z)*/;
-                point3.y -= (env->bucket[wing + env->col].z);
-                point3.x += Xenvdim / 2 - (width / 6);
-                point3.y += Yenvdim / 2 - (height / 2);
+                point3.x =(x - (y + 1)) * size / 2;
+                point3.y = (x + (y + 1)) * size / 4;
+                point3.y -= (env->bucket[wing + env->col].z * env->z_modify);
+                point3.x += XENVDIM / 2 - (width / 6);
+                point3.x += env->trans_x;
+                point3.y += YENVDIM / 2 - (height / 2);
+                point3.y += env->trans_y;
                 line_drawer(env, point1, point3, get_color(env, env->bucket[wing + env->col].z));
             }
         }
