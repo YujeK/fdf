@@ -6,7 +6,7 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 14:03:54 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/10/22 19:01:44 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/10/25 16:53:26 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,18 @@ int		signdetector(int x)
 		return (1);
 	if (x < 0)
 		return (-1);
+	return (0);
+}
+
+int		no_overdraw(t_point pt1, t_point pt2)
+{
+	if ((pt1.x < 0 || pt1.x > XDIM || pt1.y < 0 || pt1.y > YDIM)
+		&& (pt2.x < 0 || pt2.x > YDIM || pt2.y < 0 || pt2.y > YDIM))
+		if (!(pt1.y < 0 && pt2.y > YDIM))
+			if (!(pt2.y < 0 && pt1.y > YDIM))
+				if (!(pt1.x < 0 && pt2.x > YDIM))
+					if (!(pt2.x < 0 && pt1.x > YDIM))
+						return (1);
 	return (0);
 }
 
@@ -46,18 +58,20 @@ void	ft_brosenham(t_env *env, t_line *line, int color, int swap)
 	}
 }
 
-void	line_drawer(t_env *env, t_point point1, t_point point2, int color)
+void	dl(t_env *env, t_point pt1, t_point pt2, int color)
 {
 	t_line	*line;
 	int		swap;
 	int		temp;
 
+	if (no_overdraw(pt1, pt2) == 1)
+		return ;
 	swap = 0;
 	line = ft_memalloc(sizeof(t_line));
-	line->dx = abs(point2.x - point1.x);
-	line->dy = abs(point2.y - point1.y);
-	line->s1 = signdetector(point2.x - point1.x);
-	line->s2 = signdetector(point2.y - point1.y);
+	line->dx = abs(pt2.x - pt1.x);
+	line->dy = abs(pt2.y - pt1.y);
+	line->s1 = signdetector(pt2.x - pt1.x);
+	line->s2 = signdetector(pt2.y - pt1.y);
 	if (line->dy > line->dx)
 	{
 		temp = line->dx;
@@ -66,8 +80,8 @@ void	line_drawer(t_env *env, t_point point1, t_point point2, int color)
 		swap = 1;
 	}
 	line->d = 2 * line->dy - line->dx;
-	line->x = point1.x;
-	line->y = point1.y;
+	line->x = pt1.x;
+	line->y = pt1.y;
 	ft_brosenham(env, line, color, swap);
 	free(line);
 }

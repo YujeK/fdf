@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mouseinputs.c                                      :+:      :+:    :+:   */
+/*   rainbow.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/18 14:51:33 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/10/24 13:32:40 by asamir-k         ###   ########.fr       */
+/*   Created: 2018/10/22 16:47:42 by asamir-k          #+#    #+#             */
+/*   Updated: 2018/10/25 13:20:55 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../INCLUDES/fdf.h"
 
-int		mouse_manager(int button, void *param)
+int		rbw(t_env *env, int z)
 {
-	(void)param;
-	ft_putstr("mouseinput :");
-	ft_putnbr(button);
-	ft_putchar('\n');
-	return (0);
+	int			color;
+	int			whichcolor;
+	int			thiscolor;
+	const int	rainbow[7] = {RED, ORANGE, YELLOW, GREEN, CYAN, BLUE, PURPLE};
+
+	color = 0;
+	whichcolor = env->z_max / 7;
+	thiscolor = 0;
+	while (color < 6)
+	{
+		thiscolor = thiscolor + whichcolor;
+		if (z <= thiscolor)
+			return (rainbow[color]);
+		color++;
+	}
+	return (rainbow[color]);
 }

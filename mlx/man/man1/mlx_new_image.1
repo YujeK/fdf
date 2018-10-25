@@ -30,7 +30,7 @@ MiniLibX - Manipulating images
 .nf
 .I unsigned int
 .fi
-.B mlx_get_color_value
+.B mlx_rbw_value
 (
 .I void *mlx_ptr, int color
 );
@@ -143,7 +143,7 @@ manual). This must be translated to fit the
 .I bits_per_pixel
 requirement of the image, and make the color understandable to the graphical system.
 That is the purpose of the
-.B mlx_get_color_value
+.B mlx_rbw_value
 () function. It takes a standard RGB
 .I color
 parameter, and returns an

@@ -6,7 +6,7 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 12:27:56 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/10/23 17:44:07 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/10/25 16:53:26 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 # include "mlx.h"
 # include <fcntl.h>
 
-# define YENVDIM 800
-# define XENVDIM 800
-# define BORDER 140
+# define YDIM 1200
+# define XDIM 1200
+# define BORDER 200
 
 /*
 ** Colors  HEXADECIMAL :
@@ -52,9 +52,9 @@ typedef struct		s_env
 	void			*win;
 	int				x;
 	int				y;
-	int				col;
+	int				c;
 	int				lin;
-	t_wing			*bucket;
+	t_wing			*bckt;
 	int				corner1;
 	int				corner2;
 	int				corner3;
@@ -66,6 +66,10 @@ typedef struct		s_env
 	int				z_ratio;
 	int				zoom_modify;
 	int				zoom_ratio;
+	int				width;
+	int				height;
+	int				size;
+	int				w;
 }					t_env;
 
 typedef struct		s_line
@@ -86,10 +90,10 @@ typedef struct		s_point
 }					t_point;
 
 void				z_manager(int key, t_env *env);
-int					get_color(t_env *env, int z);
+int					rbw(t_env *env, int z);
 int					signdetector(int x);
 int					main(int ac, char **av);
-void				line_drawer(t_env *env, t_point point1, t_point point2,
+void				dl(t_env *env, t_point pt1, t_point pt2,
 					int color);
 int					key_manager(int key, t_env *env);
 int					mouse_manager(int button, void *param);
@@ -97,9 +101,10 @@ void				parsemanager(t_env *env, char *str);
 int					ft_readverif(char *str);
 void				ft_error(const char function[], int line);
 int					ft_countwords(char *str);
-void				ft_printbucket(t_env *env);
 void				ft_drawbucket(t_env *env);
 void				trans_manager(int key, t_env *env);
 void				zoom_manager(int key, t_env *env);
+void				print_kb(int key, t_env *env);
+void				press_p(t_env *env);
 
 #endif

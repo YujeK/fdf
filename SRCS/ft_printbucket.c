@@ -6,93 +6,94 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/05 18:11:22 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/10/23 17:43:48 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/10/25 16:53:28 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../INCLUDES/fdf.h"
 
-void    ft_printbucket(t_env *env)
+void				get_corners(t_env *env)
 {
-    int i;
-    int j;
-
-    i = -1;
-    while (++i < env->lin)
-    {
-        j = -1;
-        while (++j < env->col)
-        {
-            ft_putnbr(env->bucket[i * env->col + j].z);
-            ft_putchar(32);
-        }
-        ft_putchar('\n');
-    }
+	if (env->c <= env->lin)
+		env->size = (((XDIM - 2 * BORDER) / (env->c - 1)) - env->zoom_modify);
+	else
+		env->size = (((YDIM - 2 * BORDER) / (env->lin - 1)) - env->zoom_modify);
+	env->corner1 = 0;
+	env->corner4 = (env->c + env->lin) * (env->size) / 4;
+	env->height = abs(env->corner1 - env->corner4);
+	env->corner2 = (env->c) * (env->size) / 2;
+	env->corner3 = (0 - env->lin) * (env->size) / 2;
+	env->width = abs(env->corner3 - env->corner2);
 }
 
-int     ft_abs(int n)
+t_point				get_coord_pt1(int x, int y, t_env *env)
 {
-    return (n < 0 ? -n : n);
+	t_point		pt[3];
+
+	env->w = y * env->c + x;
+	pt[0].x = (x - y) * (env->size) / 2;
+	pt[0].y = ((x + y) * (env->size) / 4);
+	pt[0].y -= (env->bckt[env->w].z * env->z_modify);
+	pt[0].x += XDIM / 2 - (env->width / 6);
+	pt[0].x += env->trans_x;
+	pt[0].y += YDIM / 2 - (env->height / 2);
+	pt[0].y += env->trans_y;
+	return (pt[0]);
 }
 
-void    ft_drawbucket(t_env *env)
+t_point				get_coord_pt2(int x, int y, t_env *env)
 {
-    int x;
-    int y;
-    t_point point1;
-    t_point point2;
-    t_point point3;
-    int wing;
-    int size;
-    int height;
-    int width;
-    if (env->col <= env->lin)
-        size = (((XENVDIM - 2 * BORDER) / (env->col - 1)) - env->zoom_modify);
-    else
-        size = (((YENVDIM - 2 * BORDER) / (env->lin - 1)) - env->zoom_modify);
-    env->corner1 = 0;
-    env->corner4 = (env->col + env->lin) * (size) / 4;
-    height = ft_abs(env->corner1 - env->corner4);
-    env->corner2 = (env->col) * (size) / 2;
-    env->corner3 = (0 - env->lin) * (size) / 2;
-    width = ft_abs(env->corner3 - env->corner2);
-    y = -1;
-    while (++y < env->lin)
-    {
-        x = -1;
-        while (++x < env->col)
-        {
-            wing = y * env->col + x;
-            point1.x = (x - y) * (size) / 2;
-            point1.y = ((x + y) * (size) / 4);
-            point1.y -= (env->bucket[wing].z * env->z_modify);
-            point1.x += XENVDIM / 2 - (width / 6);
-            point1.x += env->trans_x;
-            point1.y += YENVDIM / 2 - (height / 2);
-            point1.y += env->trans_y;
-            if (x != env->col - 1)
-            {
-                point2.x =((x + 1) - y) * (size) / 2;
-                point2.y =((x + 1) + y) * (size) / 4;
-                point2.y -= (env->bucket[wing + 1].z * env->z_modify);
-                point2.x += XENVDIM / 2 - (width / 6);
-                point2.x += env->trans_x;
-                point2.y += YENVDIM / 2 - (height / 2);
-                point2.y += env->trans_y;
-                line_drawer(env, point1, point2, get_color(env, env->bucket[wing + env->col].z));
-            }
-            if (y != env->lin - 1)
-            {
-                point3.x =(x - (y + 1)) * size / 2;
-                point3.y = (x + (y + 1)) * size / 4;
-                point3.y -= (env->bucket[wing + env->col].z * env->z_modify);
-                point3.x += XENVDIM / 2 - (width / 6);
-                point3.x += env->trans_x;
-                point3.y += YENVDIM / 2 - (height / 2);
-                point3.y += env->trans_y;
-                line_drawer(env, point1, point3, get_color(env, env->bucket[wing + env->col].z));
-            }
-        }
-        printf("\n");
-    }
+	t_point		pt[3];
+
+	pt[1].x = ((x + 1) - y) * (env->size) / 2;
+	pt[1].y = ((x + 1) + y) * (env->size) / 4;
+	pt[1].y -= (env->bckt[env->w + 1].z * env->z_modify);
+	pt[1].x += XDIM / 2 - (env->width / 6);
+	pt[1].x += env->trans_x;
+	pt[1].y += YDIM / 2 - (env->height / 2);
+	pt[1].y += env->trans_y;
+	return (pt[1]);
+}
+
+t_point				get_coord_pt3(int x, int y, t_env *env)
+{
+	t_point			pt[3];
+
+	pt[2].x = (x - (y + 1)) * env->size / 2;
+	pt[2].y = (x + (y + 1)) * env->size / 4;
+	pt[2].y -= (env->bckt[env->w + env->c].z * env->z_modify);
+	pt[2].x += XDIM / 2 - (env->width / 6);
+	pt[2].x += env->trans_x;
+	pt[2].y += YDIM / 2 - (env->height / 2);
+	pt[2].y += env->trans_y;
+	return (pt[2]);
+}
+
+void				ft_drawbucket(t_env *env)
+{
+	int			x;
+	int			y;
+	t_point		pt[3];
+
+	get_corners(env);
+	y = -1;
+	while (++y < env->lin)
+	{
+		x = -1;
+		while (++x < env->c)
+		{
+			pt[0] = get_coord_pt1(x, y, env);
+			if (x != env->c - 1)
+			{
+				pt[1] = get_coord_pt2(x, y, env);
+				dl(env, pt[0], pt[1], rbw(env, env->bckt[env->w + env->c].z));
+			}
+			if (y != env->lin - 1)
+			{
+				pt[2] = get_coord_pt3(x, y, env);
+				dl(env, pt[0], pt[2], rbw(env, env->bckt[env->w + env->c].z));
+			}
+		}
+		ft_putchar('\n');
+	}
 }

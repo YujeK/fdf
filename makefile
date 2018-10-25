@@ -6,7 +6,7 @@
 #    By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/15 17:15:14 by asamir-k          #+#    #+#              #
-#    Updated: 2018/10/22 19:00:55 by asamir-k         ###   ########.fr        #
+#    Updated: 2018/10/25 13:53:54 by asamir-k         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRC=SRCS/main.c 			\
 	SRCS/ft_error.c 		\
 	SRCS/ft_readverif.c		\
 	SRCS/ft_countwords.c	\
-	SRCS/arcenciel.c
+	SRCS/rainbow.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
@@ -48,7 +48,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "\033[1;31;2m JOB DONE SERGEANT WingZLord NO MORE WINGS ARE DETECTED IN THE BUCKET (-_-)ゞ\033[0m"
+	@echo "\033[1;31;2m JOB DONE SERGEANT WingZLord NO MORE WINGS ARE DETECTED IN THE bckt (-_-)ゞ\033[0m"
 	@echo "\033[0;31;3m                        (FCLEAN RULE DONE)                            ~ (__)=3  ~\033[0m"
 
 re: fclean all

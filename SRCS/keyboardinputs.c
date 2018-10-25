@@ -6,7 +6,7 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 20:54:01 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/10/23 17:34:42 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/10/25 13:53:29 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,36 @@ void	z_manager(int key, t_env *env)
 		env->trans_y = 0;
 		env->trans_x = 0;
 		env->z_modify = 0;
+		env->zoom_modify = 0;
+		env->trans_ratio = 10;
+		env->z_ratio = 1;
+		env->zoom_ratio = 1;
+	}
+}
+
+void	print_kb(int key, t_env *env)
+{
+	if (key == 35)
+	{
+		mlx_string_put(env->mlx, env->win, 80, 60, PINK, " '+' : ZOOM IN");
+		mlx_string_put(env->mlx, env->win, 80, 80, PINK, " '-' : ZOOM OUT");
+		mlx_string_put(env->mlx, env->win, 80, 100, PINK, " '*' : +ZOOM ratio");
+		mlx_string_put(env->mlx, env->win, 80, 120, PINK, " '/' : -ZOOM ratio");
+		mlx_string_put(env->mlx, env->win, 80, 140, PINK, " 'W' : Zaxis up");
+		mlx_string_put(env->mlx, env->win, 80, 160, PINK, " 'S' : Zaxis down");
+		mlx_string_put(env->mlx, env->win, 80, 180, PINK, " 'Q' : +Z ratio ");
+		mlx_string_put(env->mlx, env->win, 80, 200, PINK, " 'E' : -Z ratio ");
+		mlx_string_put(env->mlx, env->win, 80, 220, PINK,
+		" 'ARROWS' : CAMERA MOVEMENTS");
+		mlx_string_put(env->mlx, env->win, 80, 240, PINK, " '1' : +MOVE ratio");
+		mlx_string_put(env->mlx, env->win, 80, 260, PINK, " '0' : -MOVE ratio");
+		mlx_string_put(env->mlx, env->win, 80, 280, PINK,
+		" 'SPACE' : ifunexpectedbullshithappens");
+		mlx_string_put(env->mlx, env->win, 0, 300, GREY,
+		" THIS WILL DISAPEAR IF YOU PRESS ANY OF THOSES BUTTONS BUT WILL \
+		APPEAR AGAIN IF YOU PRESS P AGAIN SO THIS SENTENCE IS");
+		mlx_string_put(env->mlx, env->win, 0, 320, GREY,
+		" USELESS LUL <(^x^)>");
 	}
 }
 
@@ -69,6 +99,8 @@ int		key_manager(int key, t_env *env)
 	z_manager(key, env);
 	zoom_manager(key, env);
 	mlx_clear_window(env->mlx, env->win);
+	press_p(env);
+	print_kb(key, env);
 	ft_drawbucket(env);
 	return (0);
 }
