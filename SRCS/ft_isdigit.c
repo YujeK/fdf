@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rainbow.c                                          :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/22 16:47:42 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/10/29 18:38:04 by asamir-k         ###   ########.fr       */
+/*   Created: 2018/10/29 15:24:26 by asamir-k          #+#    #+#             */
+/*   Updated: 2018/10/29 17:24:49 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../INCLUDES/fdf.h"
 
-int		rbw(t_env *env, int z)
+int		ft_isdigit(int c)
 {
-	int			color;
-	int			whichcolor;
-	int			thiscolor;
-	const int	rainbow[7] = {RED, ORANGE, YELLOW, GREEN, CYAN, BLUE, PURPLE};
-
-	color = 0;
-	whichcolor = (env->z_max) / 7;
-	thiscolor = 0;
-	while (color < 6)
-	{
-		thiscolor = thiscolor + whichcolor;
-		if (z <= thiscolor)
-			return (rainbow[color]);
-		color++;
-	}
-	return (rainbow[color]);
+	if (c > 47 && c < 58)
+		return (1);
+	else
+		return (0);
 }

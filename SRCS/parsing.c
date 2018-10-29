@@ -6,7 +6,7 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/01 10:33:35 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/10/25 16:17:16 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/10/29 17:22:31 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	bcktcreation(char *str, t_env *env)
 		free(line);
 		i++;
 	}
+	if (i == 0)
+		ft_error(__func__, __LINE__);
 	env->c = fsize;
 	env->lin = i + 1;
 	if (!(env->bckt = ft_memalloc(sizeof(t_wing) * fsize * (i + 1))))
@@ -48,7 +50,11 @@ void	collectingwings(t_env *env, char *line, int wing)
 		if (env->z_max < env->bckt[wing].z)
 			env->z_max = env->bckt[wing].z;
 		while (*line && *line != ' ')
+		{
+			if (ft_isdigit(*line) == 0)
+				ft_error(__func__, __LINE__);
 			line++;
+		}
 		wing++;
 	}
 }

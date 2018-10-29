@@ -6,7 +6,7 @@
 #    By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/15 17:15:14 by asamir-k          #+#    #+#              #
-#    Updated: 2018/10/25 13:53:54 by asamir-k         ###   ########.fr        #
+#    Updated: 2018/10/29 15:34:04 by asamir-k         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SRC=SRCS/main.c 			\
 	SRCS/ft_error.c 		\
 	SRCS/ft_readverif.c		\
 	SRCS/ft_countwords.c	\
-	SRCS/rainbow.c
+	SRCS/rainbow.c			\
+	SRCS/ft_isdigit.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

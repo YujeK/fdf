@@ -6,7 +6,7 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 12:27:56 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/10/25 16:53:26 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/10/29 15:32:21 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ typedef struct		s_point
 	int				y;
 }					t_point;
 
+int					ft_isdigit(int c);
 void				z_manager(int key, t_env *env);
 int					rbw(t_env *env, int z);
 int					signdetector(int x);

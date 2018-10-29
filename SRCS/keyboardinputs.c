@@ -6,7 +6,7 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 20:54:01 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/10/25 13:53:29 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/10/29 18:25:04 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,6 @@ void	print_kb(int key, t_env *env)
 		mlx_string_put(env->mlx, env->win, 80, 260, PINK, " '0' : -MOVE ratio");
 		mlx_string_put(env->mlx, env->win, 80, 280, PINK,
 		" 'SPACE' : ifunexpectedbullshithappens");
-		mlx_string_put(env->mlx, env->win, 0, 300, GREY,
-		" THIS WILL DISAPEAR IF YOU PRESS ANY OF THOSES BUTTONS BUT WILL \
-		APPEAR AGAIN IF YOU PRESS P AGAIN SO THIS SENTENCE IS");
-		mlx_string_put(env->mlx, env->win, 0, 320, GREY,
-		" USELESS LUL <(^x^)>");
 	}
 }
 
