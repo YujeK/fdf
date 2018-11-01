@@ -6,7 +6,7 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/01 10:33:35 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/10/29 17:22:31 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/11/01 17:08:46 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	bcktcreation(char *str, t_env *env)
 	while (get_next_line(fd, &line) == 1)
 	{
 		if (i == -1)
-			fsize = ft_countwords(line);
-		else if (ft_countwords(line) != fsize)
+			fsize = ctword(line);
+		else if (ctword(line) != fsize || (i == 0 && ctword(line) <= 1))
 			ft_error(__func__, __LINE__);
 		free(line);
 		i++;
@@ -51,7 +51,7 @@ void	collectingwings(t_env *env, char *line, int wing)
 			env->z_max = env->bckt[wing].z;
 		while (*line && *line != ' ')
 		{
-			if (ft_isdigit(*line) == 0)
+			if (ft_isdigit(*line) == 0 && *line != '-')
 				ft_error(__func__, __LINE__);
 			line++;
 		}

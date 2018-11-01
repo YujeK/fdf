@@ -6,7 +6,7 @@
 #    By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/15 17:15:14 by asamir-k          #+#    #+#              #
-#    Updated: 2018/10/29 15:34:04 by asamir-k         ###   ########.fr        #
+#    Updated: 2018/11/01 17:19:07 by asamir-k         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,8 @@ FLAGS = -Wall -Werror -Wextra
 LIB_PATH= INCLUDES/libft/
 AR:= ar rc
 RL= ranlib
-COMP= /usr/local/include
-MLXLIB= -lmlx -framework Opengl -framework Appkit
+COMP= mlx
+MLXLIB= -L mlx -lmlx -framework Opengl -framework Appkit
 SRC=SRCS/main.c 			\
 	SRCS/linedrawer.c		\
 	SRCS/keyboardinputs.c 	\
@@ -27,7 +27,7 @@ SRC=SRCS/main.c 			\
 	SRCS/ft_printbucket.c   \
 	SRCS/ft_error.c 		\
 	SRCS/ft_readverif.c		\
-	SRCS/ft_countwords.c	\
+	SRCS/ctword.c			\
 	SRCS/rainbow.c			\
 	SRCS/ft_isdigit.c
 OBJ = $(SRC:.c=.o)

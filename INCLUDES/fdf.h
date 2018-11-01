@@ -6,7 +6,7 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 12:27:56 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/10/29 15:32:21 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/11/01 16:52:22 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int					mouse_manager(int button, void *param);
 void				parsemanager(t_env *env, char *str);
 int					ft_readverif(char *str);
 void				ft_error(const char function[], int line);
-int					ft_countwords(char *str);
+int					ctword(char *str);
 void				ft_drawbucket(t_env *env);
 void				trans_manager(int key, t_env *env);
 void				zoom_manager(int key, t_env *env);
