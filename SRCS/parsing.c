@@ -6,7 +6,7 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/01 10:33:35 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/11/01 17:08:46 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/11/05 18:28:44 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@ void	collectingwings(t_env *env, char *line, int wing)
 		while (*line && *line == ' ')
 			line++;
 		env->bckt[wing].z = ft_atoi(line);
+		if (env->bckt[wing].z >= 1200)
+			env->bckt[wing].z = 1200;
+		else if (env->bckt[wing].z <= -1200)
+			env->bckt[wing].z = -1200;
 		if (env->z_max < env->bckt[wing].z)
 			env->z_max = env->bckt[wing].z;
 		while (*line && *line != ' ')
-		{
-			if (ft_isdigit(*line) == 0 && *line != '-')
-				ft_error(__func__, __LINE__);
 			line++;
-		}
 		wing++;
 	}
 }

@@ -6,7 +6,7 @@
 #    By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/15 17:15:14 by asamir-k          #+#    #+#              #
-#    Updated: 2018/11/01 17:19:07 by asamir-k         ###   ########.fr        #
+#    Updated: 2018/11/01 19:20:13 by asamir-k         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,6 @@ GCC= GCC
 HEADER= INCLUDES/fdf.h
 FLAGS = -Wall -Werror -Wextra
 LIB_PATH= INCLUDES/libft/
-AR:= ar rc
-RL= ranlib
 COMP= mlx
 MLXLIB= -L mlx -lmlx -framework Opengl -framework Appkit
 SRC=SRCS/main.c 			\

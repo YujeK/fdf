@@ -6,7 +6,7 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/08 12:27:56 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/11/01 16:52:22 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/11/06 17:06:25 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,17 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "libft/libft.h"
-# include "mlx.h"
+# include "../mlx/mlx.h"
 # include <fcntl.h>
 
-# define YDIM 1200
-# define XDIM 1200
+# define YDIM 1000
+# define XDIM 1000
 # define BORDER 200
 
 /*
 ** Colors  HEXADECIMAL :
 */
+
 # define PINK       0xFD2BE6
 # define BLUE       0x0012FD
 # define RED        0xFD0000
@@ -94,8 +95,7 @@ void				z_manager(int key, t_env *env);
 int					rbw(t_env *env, int z);
 int					signdetector(int x);
 int					main(int ac, char **av);
-void				dl(t_env *env, t_point pt1, t_point pt2,
-					int color);
+void				dl(t_env *env, t_point pt1, t_point pt2, int color);
 int					key_manager(int key, t_env *env);
 int					mouse_manager(int button, void *param);
 void				parsemanager(t_env *env, char *str);

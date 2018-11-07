@@ -6,7 +6,7 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 14:03:54 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/10/25 16:53:26 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/11/01 19:19:20 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ void	dl(t_env *env, t_point pt1, t_point pt2, int color)
 	if (no_overdraw(pt1, pt2) == 1)
 		return ;
 	swap = 0;
-	line = ft_memalloc(sizeof(t_line));
+	if (!(line = ft_memalloc(sizeof(t_line))))
+		ft_error(__func__, __LINE__);
 	line->dx = abs(pt2.x - pt1.x);
 	line->dy = abs(pt2.y - pt1.y);
 	line->s1 = signdetector(pt2.x - pt1.x);

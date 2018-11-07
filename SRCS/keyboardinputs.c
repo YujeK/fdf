@@ -6,7 +6,7 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 20:54:01 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/10/29 18:25:04 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/11/05 18:17:39 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	trans_manager(int key, t_env *env)
 {
 	if (key == 83)
 		env->trans_ratio++;
-	if (key == 82 && env->trans_ratio > 1)
+	else if (key == 82 && env->trans_ratio > 1)
 		env->trans_ratio--;
 	if (key == 125)
 		env->trans_y -= env->trans_ratio;

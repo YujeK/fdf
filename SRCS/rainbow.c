@@ -6,7 +6,7 @@
 /*   By: asamir-k <asamir-k@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 16:47:42 by asamir-k          #+#    #+#             */
-/*   Updated: 2018/10/29 18:38:04 by asamir-k         ###   ########.fr       */
+/*   Updated: 2018/11/01 18:22:48 by asamir-k         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		rbw(t_env *env, int z)
 	int			color;
 	int			whichcolor;
 	int			thiscolor;
-	const int	rainbow[7] = {RED, ORANGE, YELLOW, GREEN, CYAN, BLUE, PURPLE};
+	static int	rainbow[7] = {RED, ORANGE, YELLOW, GREEN, CYAN, BLUE, PURPLE};
 
 	color = 0;
 	whichcolor = (env->z_max) / 7;
