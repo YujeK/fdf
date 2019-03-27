@@ -1,5 +1,4 @@
 HOW TO:
-
--make
-
-execute ./fdf with a valid map , enjoy boy
+-clone it
+-make all
+-./fdf with a valid map , enjoy boy
